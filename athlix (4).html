@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Athlix – Move beautifully</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<style>
+:root{--bg:#faf7f2;--ink:#1f1b16;--mut:#8a8178;--acc:#c8553d;--sage:#e7eadb;--sand:#f0e9de;--line:#e8e0d4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+h1,h2,.logo{font-family:'Playfair Display',serif}
+a{cursor:pointer}
+.ann{background:var(--ink);color:#f5efe6;text-align:center;font-size:12px;letter-spacing:2px;padding:8px;text-transform:uppercase}
+header{position:sticky;top:0;z-index:20;background:#faf7f2e8;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 5%;gap:14px}
+.logo{font-size:30px;font-weight:800;letter-spacing:3px;cursor:pointer;text-align:center}.logo i{color:var(--acc);font-style:normal}
+.sb{display:flex;align-items:center;background:var(--sand);border-radius:30px;padding:0 16px;max-width:300px}
+.sb input{border:0;background:none;padding:11px 8px;width:100%;font-size:14px;outline:0}
+.act{display:flex;gap:10px;justify-content:flex-end}
+.pill{border:1px solid var(--ink);background:none;padding:9px 18px;border-radius:30px;cursor:pointer;font-size:13px;font-weight:500;transition:.2s;font-family:inherit}
+.pill:hover,.pill.f{background:var(--ink);color:#fff}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 5% 14px;justify-content:center}
+.chips a{padding:7px 16px;border-radius:30px;font-size:13px;white-space:nowrap;color:var(--mut);transition:.2s}
+.chips a:hover{color:var(--ink)}.chips a.on{background:var(--sage);color:var(--ink);font-weight:600}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:50px 5%}
+.hero small{color:var(--acc);letter-spacing:3px;font-weight:600;font-size:12px}
+.hero h1{font-size:clamp(38px,6vw,74px);line-height:1.02;margin:14px 0 18px;font-weight:800}.hero h1 em{color:var(--acc)}
+.hero p{color:var(--mut);max-width:440px;line-height:1.7;margin-bottom:26px}
+.hero .pill{background:var(--ink);color:#fff;padding:14px 32px}.hero .pill:hover{background:var(--acc);border-color:var(--acc)}
+.hi{position:relative}.hi img{width:100%;height:480px;object-fit:cover;border-radius:220px 220px 20px 20px;display:block}
+.hi span{position:absolute;bottom:20px;left:-20px;background:#fff;padding:12px 18px;border-radius:14px;box-shadow:0 10px 30px #0002;font-size:13px}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;padding:0 5% 40px}
+.cats div{position:relative;border-radius:16px;overflow:hidden;height:150px;cursor:pointer}
+.cats img{width:100%;height:100%;object-fit:cover;transition:.4s}.cats div:hover img{transform:scale(1.1)}
+.cats b{position:absolute;inset:auto 0 0;color:#fff;padding:20px 12px 10px;background:linear-gradient(transparent,#000a);font-size:14px}
+.sec{padding:10px 5% 50px}
+.bar{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+.bar h2{font-size:34px}.ctl{display:flex;gap:10px}
+select,input,textarea{font-family:inherit;font-size:14px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;width:100%;outline:0}
+.ctl select{width:auto;border-radius:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:26px 20px}
+.card{position:relative}
+.im{aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:var(--sand);position:relative}
+.im img{width:100%;height:100%;object-fit:cover;transition:.5s}.card:hover .im img{transform:scale(1.07)}
+.tag{position:absolute;top:12px;left:12px;background:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;z-index:2}
+.add{position:absolute;left:12px;right:12px;bottom:-50px;background:var(--ink);color:#fff;border:0;padding:12px;border-radius:30px;cursor:pointer;font-weight:500;font-family:inherit;transition:.3s;z-index:2}
+.card:hover .add{bottom:12px}.add:hover{background:var(--acc)}
+.meta{padding:12px 4px}.br{font-size:11px;letter-spacing:2px;color:var(--acc);font-weight:600}
+.nm{font-size:15px;margin:3px 0 6px}.pr{font-weight:600}.pr s{color:var(--mut);font-weight:400;margin-left:8px;font-size:13px}.rt{float:right;font-size:12px;color:var(--mut)}
+.band{margin:0 5% 50px;background:var(--sage);border-radius:24px;padding:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:center}
+.band b{font-family:'Playfair Display',serif;font-size:20px;display:block;margin-bottom:4px}.band span{font-size:13px;color:#5d5a4d}
+footer{background:var(--ink);color:#c9c0b3;padding:44px 5%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;font-size:14px;line-height:1.8}
+footer .logo{color:#fff;text-align:left;font-size:26px}
+.ov{position:fixed;inset:0;background:#1f1b1699;backdrop-filter:blur(4px);display:none;z-index:50;align-items:center;justify-content:center;padding:16px}
+.ov.show{display:flex}
+.modal{background:var(--bg);border-radius:22px;padding:34px;width:100%;max-width:410px;max-height:92vh;overflow:auto}
+.modal h2{margin-bottom:18px;font-size:28px}.modal input,.modal textarea,.modal select{margin-bottom:12px}
+.pri{width:100%;background:var(--ink);color:#fff;border:0;padding:14px;border-radius:30px;font-weight:500;cursor:pointer;font-size:15px;font-family:inherit}.pri:hover{background:var(--acc)}
+.sw{text-align:center;font-size:13px;margin-top:14px;color:var(--mut)}.sw a{color:var(--acc);font-weight:600}
+.x{float:right;cursor:pointer;font-size:26px;line-height:1}
+.drawer{position:fixed;top:0;right:-460px;width:min(430px,100%);height:100%;background:var(--bg);z-index:60;transition:.35s;display:flex;flex-direction:column;box-shadow:-10px 0 40px #0003}
+.drawer.show{right:0}.drawer>h2{padding:24px;border-bottom:1px solid var(--line)}
+.items{flex:1;overflow:auto;padding:8px 24px}
+.ci{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ci img{width:64px;height:78px;object-fit:cover;border-radius:10px}.ci div{flex:1}
+.q button{width:26px;height:26px;border:1px solid var(--line);background:#fff;border-radius:50%;cursor:pointer}
+.foot{padding:24px;border-top:1px solid var(--line)}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:13px 26px;border-radius:30px;z-index:99;display:none;font-size:14px}
+.bd{background:var(--acc);color:#fff;border-radius:50%;font-size:11px;padding:2px 7px;margin-left:5px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.hi img{height:340px}.top{grid-template-columns:auto 1fr}.sb{display:none}.logo{text-align:left}.chips{justify-content:flex-start}}
+.pdg{display:grid;grid-template-columns:1fr 1fr;gap:26px}.pdi{width:100%;border-radius:16px;aspect-ratio:4/5;object-fit:cover;background:var(--sand)}.th{display:flex;gap:8px;margin-top:8px}.th img{width:60px;height:72px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}.th img:hover{border-color:var(--acc)}.pdg ul{margin:14px 0 18px 18px;font-size:14px;line-height:1.9;color:#4a443c}.nm,.im img{cursor:pointer}@media(max-width:700px){.pdg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="ann">Free delivery above ₹999 · 30-day easy returns</div>
+<header>
+ <div class="top">
+  <div class="sb">🔍<input id="q" placeholder="Search products" oninput="render()"></div>
+  <div class="logo" onclick="setCat('All')">ATHLI<i>X</i></div>
+  <div class="act"><button class="pill" id="userBtn" onclick="userClick()">Login</button><button class="pill f" onclick="toggleCart(true)">Cart<span class="bd" id="cnt">0</span></button></div>
+ </div>
+ <div class="chips" id="nav"></div>
+</header>
+
+<section class="hero">
+ <div><small>NEW SEASON · 2026</small><h1>Move with <em>purpose</em>, play with joy.</h1><p>Thoughtfully designed sports gear for every body and every game — from your first run to your hundredth match.</p><button class="pill" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop the collection</button></div>
+ <div class="hi"><img id="hero" alt="" data-c="Running" data-i="1" onerror="imgErr(this)"><span>★ 4.8 · Loved by 10,000+ athletes</span></div>
+</section>
+<div class="cats" id="cats"></div>
+
+<section class="sec" id="shop">
+ <div class="bar"><div><small style="color:var(--mut);letter-spacing:2px">THE EDIT</small><h2 id="title">All Products</h2></div>
+  <div class="ctl"><select id="pf" onchange="render()"><option value="0">Any price</option><option value="1">Under ₹500</option><option value="2">₹500 – ₹1500</option><option value="3">Above ₹1500</option></select>
+  <select id="gf" onchange="render()"><option value="">Everyone</option><option value="m">Men</option><option value="w">Women</option></select>
+  <select id="sort" onchange="render()"><option value="">Featured</option><option value="l">Price: low to high</option><option value="h">Price: high to low</option><option value="r">Top rated</option></select></div></div>
+ <div class="grid" id="grid"></div>
+</section>
+<div class="band"><div><b>Free shipping</b><span>On orders above ₹999</span></div><div><b>Easy returns</b><span>30 days, no questions</span></div><div><b>Secure checkout</b><span>Your data stays safe</span></div><div><b>Up to 40% off</b><span>On selected gear</span></div></div>
+<footer><div><div class="logo">ATHLIX</div>Move beautifully.<br>College project demo.</div><div>Help · Track order · Returns<br>support@athlix.demo</div><div>© 2026 Athlix.<br>All rights reserved.</div></footer>
+
+<div class="ov" id="authOv"><div class="modal"><span class="x" onclick="closeAuth()">×</span>
+ <h2 id="authT">Login</h2><input id="aName" placeholder="Full name" style="display:none"><input id="aMail" type="email" placeholder="Email"><input id="aPass" type="password" placeholder="Password">
+ <button class="pri" onclick="submitAuth()">Continue</button><div class="sw" id="authSw"></div></div></div>
+
+<div class="ov" id="coOv"><div class="modal"><span class="x" onclick="coOv.classList.remove('show')">×</span>
+ <h2>Checkout</h2><input id="cName" placeholder="Full name"><input id="cMail" type="email" placeholder="Email"><input id="cPhone" placeholder="Phone">
+ <textarea id="cAddr" rows="3" placeholder="Delivery address with pincode"></textarea>
+ <select id="cPay"><option>Cash on Delivery</option><option>UPI</option><option>Card</option></select>
+ <p style="margin-bottom:14px;font-weight:600">Total: <span id="coTot"></span></p><button class="pri" id="placeBtn" onclick="placeOrder()">Place order</button></div></div>
+
+<div class="ov" id="pdOv" onclick="if(event.target==this)this.classList.remove('show')"><div class="modal" style="max-width:860px"><span class="x" onclick="pdOv.classList.remove('show')">×</span><div class="pdg" id="pdBody"></div></div></div>
+
+<div class="drawer" id="drawer"><h2>Your cart <span class="x" onclick="toggleCart(false)">×</span></h2><div class="items" id="items"></div>
+ <div class="foot"><p style="font-size:18px;font-weight:600;margin-bottom:14px">Total: <span id="tot">₹0</span></p><button class="pri" onclick="checkout()">Checkout</button></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== EMAILJS SETUP: paste your 4 values ===== */
+const EMAILJS={PUBLIC_KEY:"cuqwOP4s0eeDT4F8w",SERVICE_ID:"service_em2lso9",ORDER_TEMPLATE:"template_d6n7ly1",SIGNUP_TEMPLATE:"template_d6n7ly1"};
+try{emailjs.init({publicKey:EMAILJS.PUBLIC_KEY})}catch(e){}
+async function sendMail(t,p){if(EMAILJS.PUBLIC_KEY.startsWith("YOUR_")){console.warn("EmailJS not configured",p);return false}
+ try{await emailjs.send(EMAILJS.SERVICE_ID,t,p);return true}catch(e){console.error(e);return false}}
+
+/* ===== 100 PRODUCTS =====  [category, base price, search keyword, names...]
+   Photos load from LoremFlickr by keyword. To use exact product photos, add your own URL in IMG_OVERRIDE: {1:"https://..."} (key = product id 1-100) */
+const USE_LOCAL_IMAGES=true; /* put your photos in an "images" folder: 1.jpg ... 100.jpg (extra model shots: 1-2.jpg, 1-3.jpg), hero.jpg */
+const USE_ONLINE_PHOTOS=false; /* set true to try online photos first */
+const IMG_OVERRIDE={};
+const CATS={
+ Running:[799,"running","Cushion Run Shoes|Trail Runner Shoes|Dry-Fit Running Tee|Running Shorts|Reflective Jacket|Compression Tights|Running Cap|Hydration Belt|Sports Socks (3 pack)|Armband Phone Holder"],
+ Football:[499,"football","Football Boots|Match Football Size 5|Training Football|Goalkeeper Gloves|Shin Guards|Team Jersey|Football Socks|Training Cones Set|Football Bag|Referee Whistle Set"],
+ Cricket:[599,"cricket","Kashmir Willow Bat|Leather Cricket Ball|Batting Gloves|Batting Pads|Cricket Helmet|Wicket Keeping Gloves|Thigh Guard|Cricket Shoes|Kit Bag|Cricket Whites Shirt"],
+ Badminton:[399,"badminton","Carbon Racket|Feather Shuttlecock (12)|Nylon Shuttle (6)|Court Shoes|Racket Grip Tape|Racket Bag 3-in-1|Wristbands|Portable Net Set|Sports Towel|Knee Support"],
+ Cycling:[699,"bicycle","Mountain Bike 21 Speed|Cycling Helmet|Padded Cycling Shorts|Cycling Gloves|Bike Water Bottle|Bike Pump|LED Light Set|Cycling Jersey|Bike Lock|UV400 Sunglasses"],
+ Fitness:[549,"gym","Dumbbell Set 10kg|Resistance Bands (5)|Skipping Rope|Gym Gloves|Ab Roller|Push-up Bars|Kettlebell 8kg|Gym Duffle Bag|Shaker Bottle|Weight Lifting Belt"],
+ Yoga:[449,"yoga","Yoga Mat 6mm|Yoga Block (2)|Yoga Strap|Yoga Leggings Women|Sports Bra Women|Foam Roller|Meditation Cushion|Yoga Towel|Balance Ball|Yoga Wheel"],
+ Swimming:[349,"swimming","Swim Goggles|Silicone Swim Cap|Swimsuit Men|Swimsuit Women|Kickboard|Pull Buoy|Nose Clip + Ear Plugs|Waterproof Swim Bag|Short Fins|Quick-Dry Towel"],
+ Hiking:[899,"hiking","Trekking Shoes|Backpack 40L|Trekking Pole|Rain Poncho|Hiking Trousers|Camping Tent 2P|Sleeping Bag|Head Torch|Water Bottle 1L|Thermal Fleece Jacket"],
+ Basketball:[599,"basketball","Basketball Size 7|Indoor Court Shoes|Basketball Jersey Men|Basketball Shorts|Wall Hoop Set|Ball Pump + Needles|Arm Sleeve|Headband (2)|Ankle Brace|Ball Carry Bag"]
+};
+const KW2={Shoes:"shoes",Boots:"boots",Bat:"bat",Ball:"ball",Helmet:"helmet",Gloves:"gloves",Bag:"bag",Jersey:"jersey",Mat:"mat",Goggles:"goggles",Racket:"racket",Bike:"bike",Tent:"tent",Backpack:"backpack",Jacket:"jacket",Dumbbell:"dumbbell",Kettlebell:"kettlebell",Rope:"rope",Bottle:"bottle",Towel:"towel",Shorts:"shorts",Cap:"cap",Sunglasses:"sunglasses",Shuttlecock:"shuttlecock",Fins:"fins",Torch:"flashlight",Basketball:"basketball",Football:"soccer ball"};
+const P=[];let id=1;
+Object.entries(CATS).forEach(([c,[base,kw,names]])=>names.split("|").forEach((n,i)=>{
+ const price=Math.round((base+i*base*.45+(i%3)*60)/10)*10-1,off=[10,15,20,25,30,40][(id+i)%6];
+ const k2=Object.keys(KW2).find(k=>n.includes(k));
+ P.push({id,cat:c,name:"Athlix "+n,price,mrp:Math.round(price/(1-off/100)/10)*10,off,rate:(3.8+((id*7)%13)/10).toFixed(1),
+  g:/Women|Bra/.test(n)?"w":/Men|Jersey|Boots/.test(n)?"m":"u",
+  img:IMG_OVERRIDE[id]||`https://loremflickr.com/480/600/${encodeURIComponent(k2?KW2[k2]:kw)},${kw}?lock=${id}`});id++}));
+
+/* ===== Product illustrations (work offline, one per product type, colours vary) ===== */
+const PAL=[["#c8553d","#7a2e1f"],["#2f5d50","#1c3a31"],["#27408b","#16275a"],["#e0a030","#8a5f10"],["#6b4c9a","#3f2a63"],["#2b2723","#000"]];
+function art(p){
+ const [a,d]=PAL[p.id%6],n=p.name,bg=["#f0e9de","#e7eadb","#f6dfd6","#e3e8f0"][p.id%4],T=r=>r.test(n);let g;
+ if(T(/Bag|Backpack/))g=`<rect x="120" y="190" width="240" height="280" rx="40" fill="${a}"/><path d="M180 195Q240 90 300 195" fill="none" stroke="${d}" stroke-width="18"/><rect x="160" y="320" width="160" height="90" rx="16" fill="${d}"/><rect x="215" y="295" width="50" height="14" rx="7" fill="#fff"/>`;
+ else if(T(/Shoes|Boots/))g=`<path d="M70 360Q80 230 175 215L235 285Q330 300 395 335Q430 355 420 405L70 405Z" fill="${a}"/><rect x="62" y="395" width="368" height="34" rx="17" fill="#fff" stroke="${d}" stroke-width="4"/><path d="M175 215L150 250M205 245L180 280M235 275L210 310" stroke="#fff" stroke-width="7" stroke-linecap="round"/><path d="M90 340Q200 330 300 372" fill="none" stroke="${d}" stroke-width="10"/>`;
+ else if(T(/Pump|Bottle|Shaker/))g=`<rect x="190" y="120" width="100" height="40" rx="10" fill="${d}"/><rect x="165" y="160" width="150" height="320" rx="40" fill="${a}"/><rect x="165" y="270" width="150" height="90" fill="#fff" opacity=".85"/><text x="240" y="325" text-anchor="middle" font-size="26" font-family="serif" fill="${d}" letter-spacing="4">ATHLIX</text>`;
+ else if(T(/Shuttle/))g=`<path d="M190 150L290 150L260 340L220 340Z" fill="#fff" stroke="${d}" stroke-width="5"/><path d="M215 150L228 340M240 150V340M265 150L252 340" stroke="${d}" stroke-width="3"/><circle cx="240" cy="372" r="42" fill="${a}"/>`;
+ else if(T(/Ball|Basketball Size/))g=T(/Cricket/)?`<circle cx="240" cy="300" r="140" fill="#b3261e"/><path d="M130 220Q240 300 130 380M350 220Q240 300 350 380" fill="none" stroke="#fff" stroke-width="6" stroke-dasharray="12 8"/>`:T(/Basketball/)?`<circle cx="240" cy="300" r="140" fill="#e8742a"/><path d="M100 300H380M240 160V440M150 190Q240 300 150 410M330 190Q240 300 330 410" fill="none" stroke="#3a1c0a" stroke-width="5"/>`:`<circle cx="240" cy="300" r="140" fill="#fff" stroke="#222" stroke-width="5"/><polygon points="240,235 285,268 268,320 212,320 195,268" fill="#222"/><path d="M240 235V170M285 268L345 245M268 320L305 375M212 320L175 375M195 268L135 245" stroke="#222" stroke-width="5"/>`;
+ else if(T(/\bBat\b/))g=`<g transform="rotate(35 240 300)"><rect x="215" y="90" width="20" height="130" rx="8" fill="#3a2a1e"/><rect x="190" y="210" width="70" height="280" rx="18" fill="#d9a85f"/><path d="M225 230V470" stroke="#a9772f" stroke-width="3"/></g>`;
+ else if(T(/Racket/))g=`<g transform="rotate(30 240 300)"><ellipse cx="240" cy="230" rx="85" ry="110" fill="none" stroke="${a}" stroke-width="14"/><path d="M190 150V310M215 125V335M240 120V340M265 125V335M290 150V310M165 200H315M158 240H322M165 280H315" stroke="#999" stroke-width="2"/><rect x="230" y="338" width="20" height="140" rx="8" fill="${d}"/></g>`;
+ else if(T(/Tee|Jersey|Shirt|Jacket|Fleece|Bra|Poncho|Sleeve/))g=`<path d="M170 150L90 200L125 270L170 245V470H310V245L355 270L390 200L310 150Q240 200 170 150Z" fill="${a}"/><path d="M170 150Q240 200 310 150" fill="none" stroke="${d}" stroke-width="10"/><text x="240" y="330" text-anchor="middle" font-size="26" font-family="serif" fill="#fff" letter-spacing="4">ATHLIX</text>`;
+ else if(T(/Shorts|Tights|Leggings|Trousers|Thigh/))g=`<path d="M150 150H330L350 460H260L240 280L220 460H130Z" fill="${a}"/><rect x="150" y="150" width="180" height="30" fill="${d}"/><path d="M240 180V280" stroke="${d}" stroke-width="4"/>`;
+ else if(T(/Helmet|Cap/))g=`<path d="M110 340Q110 140 240 140Q370 140 370 340Z" fill="${a}"/><rect x="95" y="335" width="290" height="26" rx="13" fill="${d}"/><path d="M190 160V330M240 150V330M290 160V330" stroke="#fff" stroke-width="12" opacity=".5"/>`;
+ else if(T(/Gloves/))g=`<path d="M160 470V300L130 220Q125 190 155 195L185 250V150Q185 125 210 130V240V120Q210 95 235 100V240V130Q235 105 260 112V250V160Q260 135 285 145V300L330 280Q360 275 345 305L300 400V470Z" fill="${a}" stroke="${d}" stroke-width="5"/><rect x="160" y="440" width="140" height="40" fill="${d}"/>`;
+ else if(T(/Goggles|Sunglasses/))g=`<path d="M60 300H120M360 300H420" stroke="${d}" stroke-width="18"/><ellipse cx="170" cy="300" rx="70" ry="55" fill="${a}" stroke="${d}" stroke-width="12"/><ellipse cx="310" cy="300" rx="70" ry="55" fill="${a}" stroke="${d}" stroke-width="12"/><path d="M240 295H240" stroke="${d}" stroke-width="16"/>`;
+ else if(T(/Mat|Towel|Block|Roller|Wheel|Cushion|Sleeping/))g=`<rect x="110" y="200" width="260" height="200" rx="24" fill="${a}"/><ellipse cx="370" cy="300" rx="36" ry="100" fill="${d}"/><ellipse cx="370" cy="300" rx="14" ry="42" fill="${bg}"/><path d="M130 250H350M130 300H350M130 350H350" stroke="#fff" stroke-width="3" opacity=".4"/>`;
+ else if(T(/Dumbbell|Kettlebell|Bars|Pole/))g=`<rect x="130" y="290" width="220" height="22" rx="10" fill="#888"/><rect x="95" y="235" width="40" height="130" rx="12" fill="${a}"/><rect x="345" y="235" width="40" height="130" rx="12" fill="${a}"/><rect x="65" y="260" width="34" height="80" rx="10" fill="${d}"/><rect x="381" y="260" width="34" height="80" rx="10" fill="${d}"/>`;
+ else if(T(/Mountain Bike/))g=`<circle cx="130" cy="380" r="85" fill="none" stroke="#222" stroke-width="12"/><circle cx="350" cy="380" r="85" fill="none" stroke="#222" stroke-width="12"/><path d="M130 380L210 250H310L350 380M210 250L250 380H130M310 250L290 210H340" fill="none" stroke="${a}" stroke-width="12" stroke-linecap="round"/><path d="M190 225H235" stroke="#222" stroke-width="14"/>`;
+ else if(T(/Tent/))g=`<path d="M60 440L240 140L420 440Z" fill="${a}"/><path d="M240 140L190 440H290Z" fill="${d}"/><path d="M40 440H440" stroke="#555" stroke-width="8"/>`;
+ else g=`<path d="M160 140H320Q340 300 300 450Q240 490 180 450Q140 300 160 140Z" fill="${a}"/><path d="M200 190H280M195 260H285M200 330H280" stroke="${d}" stroke-width="12" stroke-linecap="round"/>`;
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" width="480" height="600"><defs><radialGradient id="r" cx="50%" cy="45%" r="65%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="${bg}"/></radialGradient></defs><rect width="480" height="600" fill="url(#r)"/><ellipse cx="240" cy="505" rx="150" ry="16" fill="#000" opacity=".12"/>${g}<text x="240" y="565" text-anchor="middle" font-size="18" font-family="serif" fill="#8a8178" letter-spacing="6">ATHLIX</text></svg>`;
+ return "data:image/svg+xml,"+encodeURIComponent(svg)}
+P.forEach(p=>{if(IMG_OVERRIDE[p.id]||USE_ONLINE_PHOTOS)return;p.img=USE_LOCAL_IMAGES?"images/"+p.id+".jpg":art(p)});
+const CATLIST=["All",...Object.keys(CATS)];
+let cat="All",cart=JSON.parse(localStorage.getItem("ax_cart")||"[]"),mode="login";
+const $=i=>document.getElementById(i),SVGFB="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22600%22%3E%3Crect width=%22480%22 height=%22600%22 fill=%22%23f0e9de%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2234%22 fill=%22%23c8553d%22 font-family=%22serif%22%3EATHLIX%3C/text%3E%3C/svg%3E";
+const CI={Running:"photo-1461896836934-ffe607ba8211",Football:"photo-1579952363873-27f3bade9f55",Cricket:"photo-1531415074968-036ba1b575da",Badminton:"photo-1626224583764-f87db24ac4ea",Cycling:"photo-1541625602330-2277a4c46182",Fitness:"photo-1517836357463-d25dfeac3438",Yoga:"photo-1544367567-0f2fcb009e0b",Swimming:"photo-1530549387789-4c1017266635",Hiking:"photo-1551632811-561732d1e306",Basketball:"photo-1546519638-68e109498ffc"};
+/* image fallback chain: keyword photo -> category photo (Unsplash) -> random photo (Picsum) -> ATHLIX tile */
+/* if an image hangs (no error, never loads), move it to the next source after 6s */
+setInterval(()=>document.querySelectorAll("img[data-c]").forEach(i=>{if(!i.complete&&(+i.dataset.s||0)<3&&(i._t=(i._t||0)+1)>=3){i._t=0;imgErr(i)}}),2000);
+function imgErr(e){if(!USE_ONLINE_PHOTOS){e.onerror=null;e.src=art(P[e.dataset.i-1]||P[0]);return}const s=+(e.dataset.s||0)+1;e.dataset.s=s;
+ if(s==1)e.src="https://images.unsplash.com/"+CI[e.dataset.c]+"?w=480&h=600&fit=crop&auto=format";
+ else if(s==2)e.src="https://picsum.photos/seed/athlix"+e.dataset.i+"/480/600";
+ else{e.onerror=null;e.src=art(P[e.dataset.i-1]||P[0])}}
+const users=()=>JSON.parse(localStorage.getItem("ax_users")||"[]"),me=()=>JSON.parse(localStorage.getItem("ax_me")||"null"),money=n=>"₹"+n.toLocaleString("en-IN");
+function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(t._t);t._t=setTimeout(()=>t.style.display="none",2800)}
+function setCat(c){cat=c;render();$("shop").scrollIntoView({behavior:"smooth"})}
+function render(){
+ $("nav").innerHTML=CATLIST.map(c=>`<a class="${c==cat?"on":""}" onclick="setCat('${c}')">${c}</a>`).join("");
+ const q=$("q").value.toLowerCase(),pr=$("pf").value,g=$("gf").value;
+ let l=P.filter(p=>(cat=="All"||p.cat==cat)&&(p.name+p.cat).toLowerCase().includes(q));
+ if(pr==1)l=l.filter(p=>p.price<500);if(pr==2)l=l.filter(p=>p.price>=500&&p.price<=1500);if(pr==3)l=l.filter(p=>p.price>1500);
+ if(g)l=l.filter(p=>p.g==g||p.g=="u");
+ const s=$("sort").value;if(s=="l")l.sort((a,b)=>a.price-b.price);if(s=="h")l.sort((a,b)=>b.price-a.price);if(s=="r")l.sort((a,b)=>b.rate-a.rate);
+ $("title").textContent=(cat=="All"?"All Products":cat)+" · "+l.length;
+ $("grid").innerHTML=l.map(p=>`<div class="card"><div class="im"><span class="tag">${p.off}% OFF</span><img loading="lazy" src="${p.img}" onclick="openP(${p.id})" alt="${p.name}" data-c="${p.cat}" data-i="${p.id}" onerror="imgErr(this)"><button class="add" onclick="addCart(${p.id})">Add to cart</button></div><div class="meta"><span class="rt">★ ${p.rate}</span><div class="br">ATHLIX</div><div class="nm" onclick="openP(${p.id})">${p.name}</div><div class="pr">${money(p.price)}<s>${money(p.mrp)}</s></div></div></div>`).join("")||"<p>No products found.</p>";
+ $("cats").innerHTML=Object.keys(CATS).map(c=>{const f=P.find(p=>p.cat==c);return `<div onclick="setCat('${c}')"><img loading="lazy" src="${f.img}" alt="" data-c="${f.cat}" data-i="${f.id}" onerror="imgErr(this)"><b>${c}</b></div>`}).join("");
+ renderCart();userUI()}
+function addCart(i){const x=cart.find(c=>c.id==i);x?x.q++:cart.push({id:i,q:1});saveCart();toast("Added to cart ✔")}
+function chg(i,d){const x=cart.find(c=>c.id==i);x.q+=d;if(x.q<=0)cart=cart.filter(c=>c.id!=i);saveCart()}
+function saveCart(){localStorage.setItem("ax_cart",JSON.stringify(cart));renderCart()}
+const total=()=>cart.reduce((s,c)=>s+P[c.id-1].price*c.q,0);
+function renderCart(){$("cnt").textContent=cart.reduce((s,c)=>s+c.q,0);$("tot").textContent=money(total());
+ $("items").innerHTML=cart.map(c=>{const p=P[c.id-1];return `<div class="ci"><img src="${p.img}" data-c="${p.cat}" data-i="${p.id}" onerror="imgErr(this)"><div><b>${p.name}</b><br>${money(p.price)}</div><span class="q"><button onclick="chg(${p.id},-1)">−</button> ${c.q} <button onclick="chg(${p.id},1)">+</button></span></div>`}).join("")||"<p style='padding:24px 0;color:#8a8178'>Your cart is empty.</p>"}
+
+/* ===== Product detail popup ===== */
+const DESC={Running:["Lightweight, breathable gear engineered for road and track miles.","Breathable mesh · Sweat-wicking · Reflective details"],Football:["Match-ready equipment built for grip, control and durability.","Durable build · Great grip · Training & match use"],Cricket:["Quality cricket gear for nets, club matches and tournaments.","Premium finish · Comfortable fit · Tournament ready"],Badminton:["Fast, light and responsive gear for smashes and rallies.","Lightweight · Strong grip · Club & casual play"],Cycling:["Comfortable and safe equipment for city rides and trails.","Ergonomic design · Weather resistant · Easy to fit"],Fitness:["Gym-tested gear for strength, cardio and home workouts.","Heavy-duty build · Non-slip grip · Easy to store"],Yoga:["Soft, supportive essentials for yoga, pilates and stretching.","Skin-friendly material · Non-slip · Easy to carry"],Swimming:["Chlorine-resistant gear for comfortable laps and training.","Chlorine resistant · Quick dry · Snug fit"],Hiking:["Trail-ready gear for treks, camping and rough weather.","Water resistant · Rugged build · Packs small"],Basketball:["Court-proven gear with excellent grip and bounce control.","Superior grip · Durable · Indoor & outdoor"]};
+function openP(i){const p=P[i-1],d=DESC[p.cat];
+ $("pdBody").innerHTML=`<div><img id="pdMain" class="pdi" src="${p.img}" data-c="${p.cat}" data-i="${p.id}" onerror="imgErr(this)"><div class="th"><img src="${p.img}" onclick="pdMain.src=this.src" onerror="imgErr(this)" data-c="${p.cat}" data-i="${p.id}"><img src="images/${i}-2.jpg" onclick="pdMain.src=this.src" onerror="this.remove()"><img src="images/${i}-3.jpg" onclick="pdMain.src=this.src" onerror="this.remove()"></div></div>
+ <div><div class="br" style="font-size:12px;letter-spacing:2px;color:var(--acc);font-weight:600">ATHLIX · ${p.cat.toUpperCase()}</div><h2 style="margin:6px 0">${p.name}</h2><div style="color:var(--mut);font-size:13px">★ ${p.rate} · ${p.off}% off</div>
+ <div style="font-size:26px;font-weight:600;margin:12px 0">${money(p.price)} <s style="font-size:15px;color:var(--mut);font-weight:400">${money(p.mrp)}</s></div>
+ <p style="color:#4a443c;line-height:1.7;font-size:14px">${d[0]}</p><ul>${d[1].split(" · ").map(f=>"<li>"+f+"</li>").join("")}<li>Free delivery above ₹999 · 30-day returns</li></ul>
+ <button class="pri" onclick="addCart(${p.id});pdOv.classList.remove('show')">Add to cart</button></div>`;
+ $("pdOv").classList.add("show")}
+function toggleCart(s){$("drawer").classList.toggle("show",s)}
+function userUI(){const u=me();$("userBtn").textContent=u?u.name.split(" ")[0]+" · Logout":"Login"}
+function userClick(){if(me()){localStorage.removeItem("ax_me");userUI();toast("Logged out")}else openAuth("login")}
+function openAuth(m){mode=m;const s=m=="signup";$("authT").textContent=s?"Create account":"Welcome back";$("aName").style.display=s?"block":"none";
+ $("authSw").innerHTML=s?'Have an account? <a onclick="openAuth(\'login\')">Login</a>':'New to Athlix? <a onclick="openAuth(\'signup\')">Sign up</a>';$("authOv").classList.add("show")}
+function closeAuth(){$("authOv").classList.remove("show")}
+async function submitAuth(){
+ const n=$("aName").value.trim(),e=$("aMail").value.trim().toLowerCase(),p=$("aPass").value;
+ if(!/^\S+@\S+\.\S+$/.test(e)||p.length<4)return toast("Enter valid email & password (min 4 chars)");
+ const L=users();
+ if(mode=="signup"){if(!n)return toast("Enter your name");if(L.find(u=>u.email==e))return toast("Account already exists");
+  L.push({name:n,email:e,pass:p});localStorage.setItem("ax_users",JSON.stringify(L));localStorage.setItem("ax_me",JSON.stringify({name:n,email:e}));
+  sendMail(EMAILJS.SIGNUP_TEMPLATE,{subject:"New signup on Athlix",message:"New user registered.\nName: "+n+"\nEmail: "+e,user_name:n,user_email:e,customer_name:n,customer_email:e,date:new Date().toLocaleString()});toast("Welcome to Athlix, "+n+"!")}
+ else{const u=L.find(u=>u.email==e&&u.pass==p);if(!u)return toast("Wrong email or password");
+  localStorage.setItem("ax_me",JSON.stringify({name:u.name,email:u.email}));toast("Welcome back, "+u.name+"!")}
+ closeAuth();userUI()}
+function checkout(){if(!cart.length)return toast("Cart is empty");
+ if(!me()){toggleCart(false);toast("Please login to checkout");return openAuth("login")}
+ const u=me();$("cName").value=u.name;$("cMail").value=u.email;$("coTot").textContent=money(total());$("coOv").classList.add("show")}
+async function placeOrder(){
+ const n=$("cName").value.trim(),e=$("cMail").value.trim(),ph=$("cPhone").value.trim(),a=$("cAddr").value.trim();
+ if(!n||!/^\S+@\S+\.\S+$/.test(e)||ph.length<10||a.length<8)return toast("Fill all details correctly");
+ const oid="ATX"+Date.now().toString().slice(-8),lines=cart.map(c=>{const p=P[c.id-1];return `${p.name} x${c.q} = ${money(p.price*c.q)}`}).join("\n");
+ $("placeBtn").textContent="Placing…";
+ const ok=await sendMail(EMAILJS.ORDER_TEMPLATE,{subject:"New Athlix order "+oid+" - "+money(total()),message:"Order "+oid+"\nCustomer: "+n+"\nEmail: "+e+"\nPhone: "+ph+"\nAddress: "+a+"\nPayment: "+$("cPay").value+"\n\nItems:\n"+lines+"\n\nTotal: "+money(total()),order_id:oid,customer_name:n,customer_email:e,customer_phone:ph,address:a,payment:$("cPay").value,items:lines,total:money(total()),date:new Date().toLocaleString()});
+ const o=JSON.parse(localStorage.getItem("ax_orders")||"[]");o.push({oid,n,e,lines,t:total()});localStorage.setItem("ax_orders",JSON.stringify(o));
+ cart=[];saveCart();$("placeBtn").textContent="Place order";$("coOv").classList.remove("show");toggleCart(false);
+ toast(ok?"Order "+oid+" placed! Email sent ✔":"Order "+oid+" placed (EmailJS not configured)")}
+render();
+$("hero").src=USE_ONLINE_PHOTOS?"https://loremflickr.com/800/960/running,athlete?lock=77":USE_LOCAL_IMAGES?"images/hero.jpg":art(P[0]);
+</script>
+<!--
+YOUR EMAILJS TEMPLATE (template_d6n7ly1) - set "To Email" = your inbox, then use:
+ Subject: {{subject}}
+ Content: {{message}}
+Optional extra variables available: {{customer_name}} {{customer_email}} {{customer_phone}} {{address}} {{payment}} {{items}} {{total}} {{order_id}} {{date}}
+-->
+</body>
+</html>
